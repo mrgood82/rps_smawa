@@ -3,169 +3,347 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing Page - Mr.Good</title>
+    <title>Landing Page - Profile</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        /* Sidebar styles */
-        .sidebar {
-            height: 100vh;
-            width: 250px;
+        /* Navbar styles */
+        .navbar {
+            background-color: #133248;
             position: fixed;
             top: 0;
-            left: 0;
-            background-color: #343a40;
-            padding-top: 20px;
-            color: #fff;
-            z-index: 1;
+            width: 100%;
+            z-index: 1000;
         }
 
-        .sidebar img {
-            width: 100px;
-            height: 100px;
+        .navbar .navbar-brand {
+            color: #e4a800;
+            font-weight: bold;
+        }
+
+        .navbar .navbar-nav .nav-link {
+            color: #fff;
+        }
+
+        .navbar .navbar-nav .nav-link:hover {
+            color: #e4a800;
+        }
+
+        /* Hero section styles */
+        .hero {
+            background-color: #133248;
+            color: #fff;
+            padding: 60px 20px;
+            text-align: center;
+            margin-top: 56px; /* Offset for the fixed navbar */
+            position: relative;
+        }
+
+        .hero img {
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
-            display: block;
-            margin: 0 auto;
+            margin-bottom: 20px;
+            border: 5px solid #e4a800;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .hero img:hover {
+            transform: scale(1.1);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            font-weight: 300;
             margin-bottom: 20px;
         }
 
-        .sidebar h2 {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .sidebar ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .sidebar ul li {
-            padding: 10px;
-            text-align: center;
-        }
-
-        .sidebar ul li a {
-            color: #fff;
-            text-decoration: none;
-            display: block;
-        }
-
-        .sidebar ul li a:hover {
-            background-color: #495057;
-        }
-
-        /* Main content styles */
-        .content {
-            margin-left: 250px;
-            padding: 20px;
-        }
-
-        .header {
-            background-color: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .header h1 {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-
-        .header p {
+        .hero .profession {
             font-size: 1rem;
-            color: #6c757d;
+            color: #e4a800;
         }
 
-        /* Navbar styles */
-        .navbar {
-            display: none; /* Hide navbar by default */
+        .hero .btn {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* Headline styles */
+        .headline {
+            background-color: #e4a800;
+            color: #133248;
+            padding: 20px 20px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-radius: 8px;
+            position: relative;
+            z-index: 10;
+            transition: position 0.3s ease, top 0.3s ease;
+        }
+
+        /* Fixed headline styles */
+        .headline.fixed {
+            position: fixed;
+            top: 56px; /* Adjust this based on your navbar height */
+            width: 100%;
+            margin-top: 0;
+            z-index: 1000;
+            opacity: 0.9; /* Make headline slightly transparent when fixed */
+        }
+
+        /* Main Content styles */
+        .content {
+            padding: 40px 20px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .section-title {
+            color: #133248;
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .section-content {
+            color: #4b7136;
+            animation: slideIn 1s ease-out;
+        }
+
+        .card {
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer styles */
+        .footer {
+            background-color: #133248;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            font-size: 0.9rem;
+        }
+
+        .footer a {
+            color: #e4a800;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            .sidebar {
-                display: none; /* Hide sidebar on small screens */
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
             }
 
-            .navbar {
-                display: block; /* Show navbar on small screens */
+            /* Remove fixed position on small screens */
+            .headline.fixed {
+                position: relative;
+                top: auto;
+                opacity: 1;
             }
+        }
 
-            .content {
-                margin-left: 0;
-            }
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
 <body>
+
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Bagus Yuli Setyawan,ST</a>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">Bagus Yuli Setyawan, ST., C.TP.</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="#home">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Visi dan Misi</a>
+                    <a class="nav-link" href="#vision-mission">Visi dan Misi</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Analisis Situasi</a>
+                    <a class="nav-link" href="#analysis">Analisis Situasi</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Dasar Hukum dan Pemikiran</a>
+                    <a class="nav-link" href="#legal-basis">Dasar Hukum</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Rencana Solusi Penanganan</a>
+                    <a class="nav-link" href="#solutions">Solusi Penanganan</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Evaluasi</a>
+                    <a class="nav-link" href="#evaluation">Evaluasi</a>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
+    <!-- Hero Section -->
+    <div class="hero" id="home">
         <img src="mrgood.jpeg" alt="Foto Profil">
-        <h2>Mr.Good</h2>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Visi dan Misi</a></li>
-            <li><a href="#">Analisis Situasi</a></li>
-            <li><a href="#">Dasar Hukum dan Pemikiran</a></li>
-            <li><a href="#">Rencana Solusi Penanganan</a></li>
-            <li><a href="#">Evaluasi</a></li>
-        </ul>
+        <h1>Bagus Yuli Setyawan, ST., C.TP.</h1>
+        <p class="profession">Professional Teacher | Entrepreneur | Motivator | Innovator | Web Developer</p>
+        <a href="https://www.youtube.com/watch?v=your-video-id" target="_blank" class="btn btn-warning btn-lg">Watch Video</a>
     </div>
 
-    <!-- Main content -->
+    <!-- Headline Section -->
+    <div class="headline" id="headline">
+        RENCANA PENGEMBANGAN SEKOLAH DI LINGKUNGAN SMAN 2 PADALARANG
+    </div>
+
+    <!-- Main Content -->
     <div class="content">
-        <!-- Modern Header -->
-        <div class="header">
-            <h1>RENCANA PENGEMBANGAN SEKOLAH DI LINGKUNGAN SMAN 2 PADALARANG</h1>
-            <p>Terakhir diperbarui: <span id="currentDate"></span></p>
-            <p>Penulis: Bagus Yuli Setyawan, ST</p>
+        <!-- Visi dan Misi Section -->
+        <div class="section" id="vision-mission">
+            <h2 class="section-title">Visi dan Misi</h2>
+            <div class="section-content">
+                <p><strong>Visi:</strong> Terwujudnya lingkungan sekolah yang aman, nyaman, dan inklusif, bebas dari segala bentuk kekerasan, bullying, dan pelecehan, sehingga setiap siswa dapat belajar dan berkembang secara optimal.</p>
+                <p><strong>Misi:</strong></p>
+                <ul>
+                    <li>Mencegah dan menanggulangi segala bentuk kekerasan, bullying, dan pelecehan di lingkungan sekolah.</li>
+                    <li>Menciptakan budaya sekolah yang positif dan mendukung, di mana setiap siswa, guru, dan staf merasa aman dan nyaman untuk belajar dan berinteraksi.</li>
+                    <li>Memberdayakan seluruh warga sekolah untuk berperan aktif dalam menciptakan lingkungan yang aman dan bebas kekerasan.</li>
+                    <li>Menyediakan Layanan Dukungan Berbasis IT bagi siswa, guru, dan staf yang menjadi korban kekerasan, bullying, atau pelecehan.</li>
+                </ul>
+            </div>
         </div>
-        <p>Ini adalah landing page untuk rencana pengembangan sekolah.</p>
-        <!-- Tambahkan konten lainnya di sini -->
+
+        <!-- Analisis Situasi Section -->
+        <div class="section" id="analysis">
+            <h2 class="section-title">Analisis Situasi</h2>
+            <div class="section-content">
+                <p>Masalah bullying yang terus terjadi di SMAN 2 Padalarang, meskipun sekolah telah berdiri cukup lama, mengindikasikan adanya beberapa faktor yang saling berkaitan. Berikut adalah beberapa kemungkinan penyebabnya:</p>
+                <ul>
+                    <li><strong>Kurangnya Kesadaran:</strong>
+                        <ul>
+                            <li>Pemahaman yang terbatas: Siswa, guru, dan staf sekolah mungkin belum sepenuhnya memahami definisi, dampak, dan bentuk-bentuk bullying yang beragam.</li>
+                            <li>Normalisasi perilaku: Perilaku bullying mungkin telah dianggap sebagai hal yang biasa atau bahkan dianggap sebagai bagian dari proses tumbuh kembang remaja.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Lingkungan Sekolah:</strong>
+                        <ul>
+                            <li>Iklim sekolah yang tidak mendukung: Adanya persaingan yang tidak sehat, diskriminasi, atau kelompok-kelompok eksklusif dapat memicu terjadinya bullying.</li>
+                            <li>Kurangnya pengawasan: Pengawasan yang kurang ketat di area-area yang rentan terjadinya bullying, seperti toilet, kantin, atau saat jam istirahat, dapat memberikan peluang bagi pelaku untuk beraksi.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Faktor Individu:</strong>
+                        <ul>
+                            <li>Masalah pribadi: Siswa yang mengalami masalah pribadi, seperti kesulitan belajar, masalah keluarga, atau rendah diri, cenderung menjadi korban atau pelaku bullying.</li>
+                            <li>Pengaruh teman sebaya: Tekanan dari teman sebaya untuk ikut terlibat dalam aksi bullying dapat membuat siswa yang awalnya tidak berniat menjadi ikut terlibat.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Kurangnya Tindakan Preventif:</strong>
+                        <ul>
+                            <li>Program pencegahan yang tidak efektif: Program-program pencegahan bullying yang telah dilaksanakan mungkin belum cukup efektif atau tidak tepat sasaran.</li>
+                            <li>Kurangnya evaluasi: Tidak adanya evaluasi yang berkelanjutan terhadap program-program pencegahan membuat sulit untuk mengidentifikasi masalah dan mencari solusi yang tepat.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Tanggapan yang Tidak Tepat:</strong>
+                        <ul>
+                            <li>Kurangnya dukungan bagi korban: Korban bullying mungkin merasa takut untuk melaporkan kejadian yang dialaminya karena takut akan perundungan lebih lanjut atau takut tidak akan dipercaya.</li>
+                            <li>Sanksi yang tidak konsisten: Hukuman yang diberikan kepada pelaku bullying mungkin tidak konsisten atau tidak memberikan efek jera.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Dasar Hukum Section -->
+        <div class="section" id="legal-basis">
+            <h2 class="section-title">Dasar Hukum</h2>
+            <div class="section-content">
+                <p>Bagian ini akan menjelaskan tentang dasar hukum yang mendasari program pencegahan dan penanggulangan bullying di lingkungan sekolah.</p>
+            </div>
+        </div>
+
+        <!-- Solusi Penanganan Section -->
+        <div class="section" id="solutions">
+            <h2 class="section-title">Solusi Penanganan</h2>
+            <div class="section-content">
+                <p>Bagian ini akan menjelaskan tentang solusi dan langkah-langkah yang akan diambil untuk mengatasi masalah bullying di sekolah.</p>
+            </div>
+        </div>
+
+        <!-- Evaluasi Section -->
+        <div class="section" id="evaluation">
+            <h2 class="section-title">Evaluasi</h2>
+            <div class="section-content">
+                <p>Bagian ini akan membahas tentang evaluasi terhadap efektivitas program pencegahan dan penanggulangan bullying.</p>
+            </div>
+        </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Bagus Yuli Setyawan. All rights reserved.</p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
 
-    <!-- JavaScript to update current date -->
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var dateElement = document.getElementById('currentDate');
-            var today = new Date();
-            var options = { year: 'numeric', month: 'long', day: 'numeric' };
-            dateElement.textContent = today.toLocaleDateString(undefined, options);
-        });
+        // Sticky headline script
+        window.onscroll = function() {
+            var headline = document.getElementById('headline');
+            if (window.pageYOffset >= 56) { // Adjust based on your navbar height
+                headline.classList.add('fixed');
+            } else {
+                headline.classList.remove('fixed');
+            }
+        };
     </script>
 </body>
 </html>
