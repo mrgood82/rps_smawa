@@ -57,8 +57,47 @@
             color: #e4a800;
         }
 
-        
+        /* Styles for tables */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #dee2e6;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        th {
+            background-color: #e4a800; /* Warna latar belakang header */
+            font-weight: bold;
+            color: white; /* Warna teks header */
+        }
+        tr:hover td {
+            background-color: #ffcc00; /* Warna latar belakang saat hover */
+            color: white; /* Warna teks saat hover */
+            transform: scale(1.02); /* Slightly scale up on hover */
+        }
+        /* Bagian konten */
+        .section {
+            background-color: #f2f2f2; /* Warna latar belakang lembut */
+            border-radius: 5px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .section h2 {
+            color: #343a40; /* Warna judul bagian */
+        }
 
+        .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05); /* Scale up on hover */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
 
     </style>
 </head>
@@ -111,7 +150,138 @@
                 </tr>
             </tbody>
         </table>
+
+        <!-- Pengalaman Bekerja Section -->
+        <div class="section">
+            <h2 class="text-center">Pengalaman Bekerja</h2>
+            <table class="table table-bordered mt-3">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Pengalaman Bekerja</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Guru TIK di MAS Muhammadiyah 2 Bandung</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Guru RPL dan TKJ di SMK Muhammadiyah 4 Bandung</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Guru TIK di SMP Muhammadiyah 2 Bandung</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Guru RPL dan TKJ di SMK 4 LPPM RI Padalarang</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Guru TIK di MA Yayasan Islam Rajamandala</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Guru RPL di SMK Wiraswasta Cimahi</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Guru Informatika di SMAN 2 Padalarang</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pengalaman Berorganisasi Section -->
+        <div class="section">
+            <h2 class="text-center">Pengalaman Berorganisasi</h2>
+            <table class="table table-bordered mt-3">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Pengalaman Berorganisasi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Waka Bidang Kesiswaan di MA Muhammadiyah 2 Bandung</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Waka Bidang Kesiswaan di SMK Muhammadiyah 2 Bandung</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Waka Bidang Kesiswaan di SMP Muhammadiyah 2 Bandung</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Waka Bidang Kurikulum di MA Yayasan Islam Rajamandala</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Pembina Ekskul IT di MA Muhammadiyah 2 Bandung</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Pembina Ekskul IT di MA Yayasan Islam Rajamandala</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Pembina Ekskul IT di SMAN 2 Padalarang</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Anggota di IKATAN GURU TIK PGRI</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Anggota di MGMP TIK Bandung Barat</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
+
+            <!-- Portfolio Section -->
+<div class="container mt-5">
+    <h2 class="text-center">Portfolio</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="1.png" class="card-img-top" alt="Project 1">
+                <div class="card-body">
+                    <h5 class="card-title">Informatika_SMAWA</h5>
+                    <p class="card-text">Channel Youtube Pembelajaran Informatika</p>
+                    <a href="https://www.youtube.com/@informatika_smawa" class="btn btn-primary">View Project</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="2.png" class="card-img-top" alt="Project 2">
+                <div class="card-body">
+                    <h5 class="card-title">Website Pembelajaran</h5>
+                    <p class="card-text">Website Pembelajaran Informatika Terpusat</p>
+                    <a href="link_to_project_2" class="btn btn-primary">View Project</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="buku.png" class="card-img-top" alt="Project 3">
+                <div class="card-body">
+                    <h5 class="card-title">Buku Informatika</h5>
+                    <p class="card-text">Buku Panduan Belajar Informatika Karya Mandiri</p>
+                    <a href="https://sites.google.com/guru.smk.belajar.id/mgmp-informatika-smawa/buku-panduan" class="btn btn-primary">View Project</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
     <footer>
         <p>© 2024 Bagus Yuli Setyawan. All rights reserved.</p>
